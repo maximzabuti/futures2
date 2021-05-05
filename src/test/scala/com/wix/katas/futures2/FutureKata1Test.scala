@@ -15,18 +15,18 @@ class FutureKata1Test(implicit ee: ExecutionEnv) extends SpecWithJUnit with Futu
   class Kata1Scope extends FakeBlog with FutureKata1 with Scope
 
   "both getPost and getRelatedPosts complete successfully" in new Kata1Scope() {
-    val expected = (post1, List(2, 3))
+    val expected = (post1, List(post2, post3))
     getPostAndRelatedPosts(postId = 1) must beEqualTo(expected).await
   }
 
   "getPost completes successfully and getRelatedPosts fails" in new Kata1Scope() {
-    override def getRelatedPosts(postId: PostId): Future[List[PostId]] = Future.failed(new Exception())
+    override def getRelatedPosts(postId: PostId): Future[List[BlogPost]] = Future.failed(new Exception())
     val expected = (post1, Nil)
     getPostAndRelatedPosts(postId = 1) must beEqualTo(expected).await
   }
 
   "getPost completes successfully and getRelatedPosts still does not complete" in new Kata1Scope() {
-    override def getRelatedPosts(postId: PostId): Future[List[PostId]] = Future.never
+    override def getRelatedPosts(postId: PostId): Future[List[BlogPost]] = Future.never
     val expected = (post1, Nil)
     getPostAndRelatedPosts(postId = 1) must beEqualTo(expected).await
   }

@@ -14,7 +14,7 @@ trait FutureKata4 extends Blog {
   // return the result of "getPost" if the "timeout" did not exceed or a failure and
   // either the result of "getRelatedPosts" if it has completed successfully before "getPost" or empty list otherwise
   def getPostAndRelatedPosts(postId: PostId, timeout: FiniteDuration)
-                            (implicit timer: JTimer, ec: ExecutionContext): Future[(BlogPost, List[PostId])] = {
+                            (implicit timer: JTimer, ec: ExecutionContext): Future[(BlogPost, List[BlogPost])] = {
     getPost(postId).withTimeOut(timeout) zip getRelatedPosts(postId).withTimeOut(timeout).recover { case _ => Nil }
   }
 }

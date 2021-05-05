@@ -13,13 +13,13 @@ class FakeBlog extends Blog {
 
   protected final val blogPosts = Map(1 -> post1, 2 -> post2, 3 -> post3, 4 -> post4)
 
-  protected final val relatedPosts = Map(1 -> List(2, 3), 2 -> List(1), 3 -> List(1), 4 -> Nil)
+  protected final val relatedPosts = Map(1 -> List(post2, post3), 2 -> List(post1), 3 -> List(post1), 4 -> Nil)
 
   override def getPost(postId: PostId): Future[BlogPost] = blogPosts.get(postId) match {
     case Some(post) => Future.successful(post)
     case None => Future.failed(PostNotFound(postId))
   }
 
-  override def getRelatedPosts(postId: PostId): Future[List[PostId]] =
+  override def getRelatedPosts(postId: PostId): Future[List[BlogPost]] =
     Future.successful(relatedPosts.getOrElse(postId, Nil))
 }

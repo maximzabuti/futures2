@@ -19,5 +19,5 @@ trait Blog {
 
   def getPost(postId: PostId): Future[BlogPost]
 
-  def getRelatedPosts(postId: PostId): Future[List[PostId]]
+  def getRelatedPosts(postId: PostId): Future[List[BlogPost]]
 }

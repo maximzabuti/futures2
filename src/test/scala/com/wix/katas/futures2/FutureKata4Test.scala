@@ -21,14 +21,14 @@ class FutureKata4Test(implicit ee: ExecutionEnv) extends SpecWithJUnit with Futu
   class Kata4Scope extends FakeBlog with FutureKata4 with Scope
 
   "both getPost and getRelatedPosts complete successfully before timeout" in new Kata4Scope() {
-    val expected = (post1, List(2, 3))
+    val expected = (post1, List(post2, post3))
     getPostAndRelatedPosts(postId = 1, timeout = 10.millis) must beEqualTo(expected).await
   }
 
   "both getPost and getRelatedPosts don't complete before timeout" in new Kata4Scope() {
     override def getPost(postId: PostId): Future[BlogPost] = Future.never
 
-    override def getRelatedPosts(postId: PostId): Future[List[PostId]] = Future.never
+    override def getRelatedPosts(postId: PostId): Future[List[BlogPost]] = Future.never
 
     val timeout = 10.millis
     val fut = getPostAndRelatedPosts(postId = 1, timeout)
@@ -37,7 +37,7 @@ class FutureKata4Test(implicit ee: ExecutionEnv) extends SpecWithJUnit with Futu
   }
 
   "getPost completes successfully before timeout but getRelatedPosts has not completed yet" in new Kata4Scope() {
-    override def getRelatedPosts(postId: PostId): Future[List[PostId]] = Future.never
+    override def getRelatedPosts(postId: PostId): Future[List[BlogPost]] = Future.never
     val expected = (post1, Nil)
     getPostAndRelatedPosts(postId = 1, timeout = 10.millis) must beEqualTo(expected).await
   }
