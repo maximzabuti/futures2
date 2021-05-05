@@ -26,9 +26,9 @@ object FutureKata3 {
 
   case class TimeoutException(timeout: FiniteDuration) extends Exception(s"timeout [$timeout] is exceeded")
 
-  implicit class TimedOutFuture[A](fut: Future[A]) {
+  implicit class TimedOutFuture[A](future: Future[A]) {
     def withTimeOut(timeout: FiniteDuration)
-                   (implicit timer: JTimer, ec: ExecutionContext): Future[A] = createFutureWithTimeout(fut, timeout)
+                   (implicit timer: JTimer, ec: ExecutionContext): Future[A] = createFutureWithTimeout(future, timeout)
   }
 
 }
