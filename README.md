@@ -1,6 +1,6 @@
 # Exercises on Scala Futures
 
-Based on original idea of [Avraham Rosenzweig](https://github.com/avrahamr)
+Based on an original idea of [Avraham Rosenzweig](https://github.com/avrahamr)
 
 ## Introduction
 
