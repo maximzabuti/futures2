@@ -15,7 +15,7 @@ See more information about `Futures` API in the [documentation](https://www.scal
 
 ### Kata1 "Required and Optional"
 
-This is an exercise on composing Futures with a required and optional results.
+This is an exercise on composing Futures with a required and optional result.
 
 ### Kata2 "Delayed Future"
 
@@ -23,8 +23,8 @@ This is an exercise on creating a Future that completes after a given delay.
 
 ### Kata3 "Future with Timeout"
 
-This is an exercise on creating a new Future that either completes with the result of a given future if the given future completes before a given timeout or fails with a timeout exception if the given future completes after the timeout.
+This is an exercise on creating a new Future that either completes with the result of a given Future if the given Future completes before a given timeout or fails with a timeout exception if the given Future completes after the timeout.
 
 ### Kata4 "Required and Optional with Timeout"
 
-This is an exercise on composing Futures with a required and optional results as in Kata1 but also with a given timeout.
+This is an exercise on composing Futures with a required and optional result (as in Kata1) but also with a given timeout.
