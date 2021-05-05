@@ -7,8 +7,8 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 
 object FutureKata3 {
 
-  // return a new future that either completes with
-  // either the result of "future" if "future" completes before "timeout" or
+  // return a new future that
+  // either completes with the result of "future" if "future" completes before "timeout" or
   // fails with "TimeoutException" if "future" completes after "timeout"
   def createFutureWithTimeout[A](future: Future[A], timeout: FiniteDuration)
                                 (implicit timer: JTimer, ec: ExecutionContext): Future[A] = {
