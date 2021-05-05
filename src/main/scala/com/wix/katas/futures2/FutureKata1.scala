@@ -10,8 +10,5 @@ trait FutureKata1 extends Blog {
   // return the result of "getPost" and
   // either the result of "getRelatedPosts" if it has completed successfully before "getPost" or empty list otherwise
   def getPostAndRelatedPosts(postId: PostId)
-                            (implicit ec: ExecutionContext): Future[(BlogPost, List[BlogPost])] = {
-    val relatedPostsFuture = getRelatedPosts(postId)
-    getPost(postId).map(_ -> relatedPostsFuture.value.flatMap(_.toOption).getOrElse(Nil))
-  }
+                            (implicit ec: ExecutionContext): Future[(BlogPost, List[BlogPost])] = ???
 }
